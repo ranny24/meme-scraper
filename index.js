@@ -1,8 +1,6 @@
 import $ from 'cheerio';
-
-const fs = require('fs');
-
-const fetch = require('node-fetch');
+import fs from 'fs';
+import fetch from 'node-fetch';
 
 // Create a new folder for saving the loaded images
 try {
