@@ -3,12 +3,12 @@ import fs from 'fs';
 import fetch from 'node-fetch';
 
 // Create a new folder for saving the loaded images
+
 try {
-  if (!fs.existsSync('./memes')) {
-    fs.mkdirSync('./memes');
-  }
+  fs.mkdirSync('./memes', { recursive: true });
+  console.log('Memes folder created successfully!');
 } catch (err) {
-  console.error(err);
+  console.error('Error creating memes folder:', err);
 }
 
 // Fetch HTML from URL and save the img URLs into the array
