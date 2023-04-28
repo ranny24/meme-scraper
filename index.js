@@ -4,12 +4,13 @@ import fetch from 'node-fetch';
 
 // Create a new folder for saving the loaded images
 
-try {
-  fs.mkdirSync('./memes', { recursive: true });
-  console.log('Memes folder created successfully!');
-} catch (err) {
-  console.error('Error creating memes folder:', err);
-}
+fs.mkdir('./memes', { recursive: true }, (err) => {
+  if (err) {
+    console.error('Error creating memes folder:', err);
+  } else {
+    console.log('Memes folder created successfully!');
+  }
+});
 
 // Fetch HTML from URL and save the img URLs into the array
 fetch('https://memegen-link-examples-upleveled.netlify.app/')
