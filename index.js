@@ -1,8 +1,9 @@
-import $ from 'cheerio';
+import cheerio from 'cheerio';
 import fs from 'fs';
 import fetch from 'node-fetch';
 
-// Check if memes folder exists, create it if it doesn't
+// Check if memes folder exists, create it if it doesn't:
+
 fs.access('./memes', (err) => {
   if (err) {
     fs.mkdir('./memes', { recursive: true }, (err) => {
@@ -17,13 +18,17 @@ fs.access('./memes', (err) => {
   }
 });
 
-// Fetch HTML from URL and save the img URLs into the array
+// Fetch HTML from URL and save the img URLs into the array:
+
 fetch('https://memegen-link-examples-upleveled.netlify.app/')
   .then((res) => res.text())
   .then((body) => {
-    // Fetch first 10 img-contents from img URL and save them
+    const $ = cheerio.load(body);
+
+    // Fetch first 10 img-contents from img URL and save them:
+
     for (let i = 0; i < 10; i++) {
-      const currentImg = $('img', body)[i].attribs.src;
+      const currentImg = $('img')[i].attribs.src;
 
       fetch(currentImg).then((res) => {
         const path =
