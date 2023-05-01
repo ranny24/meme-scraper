@@ -1,13 +1,14 @@
+import fs from 'node:fs';
 import cheerio from 'cheerio';
-import fs from 'fs';
 import fetch from 'node-fetch';
 
 // Check if memes folder exists, create it if it doesn't:
+// Check if memes folder exists, create it if it doesn't:
 fs.access('./memes', (err) => {
   if (err) {
-    fs.mkdir('./memes', { recursive: true }, (err) => {
-      if (err) {
-        console.error('Error creating memes folder:', err);
+    fs.mkdir('./memes', { recursive: true }, (err2) => {
+      if (err2) {
+        console.error('Error creating memes folder:', err2);
       } else {
         console.log('Memes folder created successfully!');
       }
